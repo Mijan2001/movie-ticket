@@ -10,7 +10,7 @@ const HeroSection = () => {
             <img
                 src={assets.marvelLogo}
                 alt="marvel logo"
-                className="max-h-11 lg:h11 mt-20"
+                className="max-h-11 lg:h-11 mt-20"
             />
             <div className="flex items-center gap-4 text-gray-300">
                 <span>Action | Adventure | Sci-Fi</span>

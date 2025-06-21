@@ -37,7 +37,8 @@ const Navbar = () => {
 
                 <NavLink
                     onClick={() => {
-                        scrollTo(0, 0), setIsOpen(false);
+                        scrollTo(0, 0);
+                        setIsOpen(false);
                     }}
                     to="/"
                     className={({ isActive }) =>
@@ -54,7 +55,8 @@ const Navbar = () => {
 
                 <NavLink
                     onClick={() => {
-                        scrollTo(0, 0), setIsOpen(false);
+                        scrollTo(0, 0);
+                        setIsOpen(false);
                     }}
                     to="/movies"
                     className={({ isActive }) =>
@@ -71,7 +73,8 @@ const Navbar = () => {
 
                 <NavLink
                     onClick={() => {
-                        scrollTo(0, 0), setIsOpen(false);
+                        scrollTo(0, 0);
+                        setIsOpen(false);
                     }}
                     to="/theaters"
                     className={({ isActive }) =>
@@ -88,7 +91,8 @@ const Navbar = () => {
 
                 <NavLink
                     onClick={() => {
-                        scrollTo(0, 0), setIsOpen(false);
+                        scrollTo(0, 0);
+                        setIsOpen(false);
                     }}
                     to="/releases"
                     className={({ isActive }) =>
@@ -105,7 +109,8 @@ const Navbar = () => {
 
                 <NavLink
                     onClick={() => {
-                        scrollTo(0, 0), setIsOpen(false);
+                        scrollTo(0, 0);
+                        setIsOpen(false);
                     }}
                     to="/favorite"
                     className={({ isActive }) =>
