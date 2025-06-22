@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Heart, PlayCircleIcon, StarIcon } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { dummyDateTimeData, dummyShowsData } from './../assets/assets';
 import BlurCircle from './../components/BlurCircle';
 import { timeFormat } from './../lib/timeFormat';
+import DateSelect from '../components/DateSelect';
+import MovieCard from '../components/MovieCard';
+import Loading from '../components/Loading';
 
 const MovieDetails = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
+
     const [show, setShow] = useState(null);
 
     const getShow = async () => {
         const found = dummyShowsData.find(show => show._id === id);
-        setShow({
-            movie: found,
-            dateTime: dummyDateTimeData
-        });
+        if (found) {
+            setShow({
+                movie: found,
+                dateTime: dummyDateTimeData
+            });
+        }
     };
 
     useEffect(() => {
@@ -55,12 +62,12 @@ const MovieDetails = () => {
                             <PlayCircleIcon className="w-5 h-5" />
                             Watch Trailer
                         </button>
-                        <Link
-                            to="#dateSelect"
+                        <a
+                            href="#dateSelect"
                             className="px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-md font-medium cursor-pointer active:scale-95"
                         >
                             Buy Tickets
-                        </Link>
+                        </a>
                         <button className="bg-gray-700 p-2.5 rounded-full transition cursor-pointer active:scale-95">
                             <Heart className="w-5 h-5 text-red-500" />
                         </button>
@@ -89,16 +96,27 @@ const MovieDetails = () => {
                     ))}
                 </div>
             </div>
-        </div>
-    ) : (
-        <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center space-y-4">
-                <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
-                <p className="text-gray-700 dark:text-gray-200 text-lg font-medium">
-                    Loading...
-                </p>
+            <DateSelect dateTime={show.dateTime} id={id} />
+            <p className="text-lg font-medium mt-20 mb-8">You May Also Like</p>
+            <div className="flex flex-wrap max-sm:justify-center gap-8">
+                {dummyShowsData.slice(0, 4).map((movie, index) => (
+                    <MovieCard key={index} movie={movie} />
+                ))}
+            </div>
+            <div className="flex justify-center mt-20">
+                <button
+                    onClick={() => {
+                        navigate('/movies');
+                        scrollTo(0, 0);
+                    }}
+                    className="px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-md font-medium cursor-pointer"
+                >
+                    Show More
+                </button>
             </div>
         </div>
+    ) : (
+        <Loading />
     );
 };
 
