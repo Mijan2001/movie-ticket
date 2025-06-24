@@ -14,8 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 // Define allowed origins
 const allowedOrigins = [
-    'https://your-production-domain.com',
-    'https://your-frontend-domain.com',
+    'https://movie-ticket-wine.vercel.app/',
     'http://localhost:5173'
 ];
 
