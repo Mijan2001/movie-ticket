@@ -7,6 +7,16 @@ const HeroSection = () => {
     const navigate = useNavigate();
     return (
         <div className='flex flex-col items-start justify-center gap-4 px-6 md:px-16 lg:px-36 bg-[url("/backgroundImage.png")] bg-cover bg-center h-screen'>
+            <marquee
+                behavior="smooth"
+                direction="left"
+                className=" text-lg font-semibold text-red-600 "
+            >
+                Project Video Link :
+                <a href="https://youtu.be/rbQwQtDBoeI?si=nip54LXZDVCSgn24">
+                    https://youtu.be/rbQwQtDBoeI?si=nip54LXZDVCSgn24
+                </a>
+            </marquee>
             <img
                 src={assets.marvelLogo}
                 alt="marvel logo"
