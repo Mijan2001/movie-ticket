@@ -5,12 +5,16 @@ import { inngest, functions } from './inngest/inngest.js';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
+import morgan from 'morgan';
 import { connectDB } from './config/db.js';
+import showRouter from './routes/showRoutes.js';
+import { addShow } from './controllers/showController.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(morgan('dev'));
 
 // Define allowed origins
 const allowedOrigins = [
@@ -38,33 +42,16 @@ app.use(
 
 app.use(express.json());
 app.use(clerkMiddleware());
+app.use('/api/inngest', serve({ client: inngest, functions }));
+
+// API Routes
 
 app.get('/', (req, res) => {
     res.send('Movie Ticket Backend API');
 });
 
-// Example API route
-app.get('/api/movies', (req, res) => {
-    res.json([
-        { id: 1, title: 'Inception', year: 2010 },
-        { id: 2, title: 'Interstellar', year: 2014 }
-    ]);
-});
-
-app.use('/api/inngest', serve({ client: inngest, functions }));
-
-// Create a new route
-// app.get('/api/hello', async function (req, res, next) {
-//     await inngest
-//         .send({
-//             name: 'test/hello.world',
-//             data: {
-//                 email: 'testUser@example.com'
-//             }
-//         })
-//         .catch(err => next(err));
-//     res.json({ message: 'Event sent!' });
-// });
+app.use('/api/show', showRouter);
+app.use('/add', addShow);
 
 // 404 handler
 app.use((req, res) => {
@@ -80,7 +67,7 @@ app.use((err, req, res, next) => {
 // Start the server
 app.listen(PORT, async () => {
     try {
-        console.log(`Server running on port ${PORT}`);
+        console.log(`Server running on port https://localhost:${PORT}`);
         await connectDB();
         console.log('Database connected successfully');
     } catch (error) {

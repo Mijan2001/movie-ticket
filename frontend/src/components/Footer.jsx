@@ -53,14 +53,16 @@ const Footer = () => {
                 {/* Contact Info */}
                 <div>
                     <h3 className="text-lg font-semibold mb-3">Get in touch</h3>
-                    <p className="text-sm text-gray-300">+1-234-567-890</p>
-                    <p className="text-sm text-gray-300">contact@example.com</p>
+                    <p className="text-sm text-gray-300">+8801828717745</p>
+                    <p className="text-sm text-gray-300">
+                        mijan.cse19@gmail.com
+                    </p>
                 </div>
             </div>
 
             {/* Divider */}
             <div className="border-t border-gray-800 mt-10 pt-4 text-center text-gray-400 text-sm">
-                Copyright 2025 © GreatStack. All Right Reserved.
+                Copyright 2025 © Mijanur Rahman. All Right Reserved.
             </div>
         </footer>
     );
